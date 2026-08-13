@@ -8,8 +8,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Undangan Event Spesial!">
 <meta property="og:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
-<meta property="og:image" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/FunRun.png">
-<meta property="og:image:secure_url" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/FunRun.png">
+<meta property="og:image" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
+<meta property="og:image:secure_url" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Undangan Event Spesial!">
 <meta name="twitter:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
-<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/FunRun.png">
+<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
 
 <title>UndanganEvent — Admin Panel</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,19 +27,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root {
-    --bg: #F4F8FB;          
+    --bg: #F8F5F2;
     --surface: #FFFFFF;
-    --ink: #334155;         
-    --ink-soft: #475569;
-    --muted: #94A3B8;
-    --line: #E2E8F0;        
-    --line-soft: #F1F5F9;
-    --accent: #60A5FA;      
-    --accent-dark: #3B82F6; 
-    --accent-soft: #EFF6FF; 
-    --success: #38BDF8;     
-    --success-dark: #0EA5E9;
-    --danger: #F87171;
+    --ink: #231F20;
+    --ink-soft: #4A4446;
+    --muted: #8C8285;
+    --line: #EADFD8;
+    --line-soft: #F4ECE7;
+    --accent: #4F46E5;
+    --accent-dark: #3730A3;
+    --accent-soft: #EEF2FF;
+    --success: #5B8D6B;
+    --danger: #C85A5A;
   }
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body {
@@ -47,16 +46,16 @@
     background: var(--bg);
     color: var(--ink);
     background-image: 
-      radial-gradient(circle at 0% 0%, rgba(96,165,250,0.12) 0%, transparent 35%),
-      radial-gradient(circle at 100% 100%, rgba(56,189,248,0.10) 0%, transparent 40%);
+      radial-gradient(circle at 0% 0%, rgba(79,70,229,0.08) 0%, transparent 35%),
+      radial-gradient(circle at 100% 100%, rgba(79,70,229,0.06) 0%, transparent 40%);
     background-attachment: fixed;
   }
   .font-display { font-family: 'Fraunces', Georgia, serif; }
   
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
+  ::-webkit-scrollbar-thumb { background: #C7D2FE; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
   
   .tab-panel { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
   @keyframes fadeUp {
@@ -68,7 +67,7 @@
     width: 100%;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 11px 14px;
     font-size: 14px;
     transition: all 0.2s;
@@ -79,33 +78,32 @@
   .field-input:focus, .field-textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 0 4px rgba(96,165,250, 0.15);
+    box-shadow: 0 0 0 4px rgba(79,70,229, 0.14);
     background: #FFFEFB;
   }
-  .field-input::placeholder, .field-textarea::placeholder { color: #CBD5E1; }
+  .field-input::placeholder, .field-textarea::placeholder { color: #BBB0A8; }
   
   .btn-primary {
-    background: var(--accent);
-    color: #FFFFFF;
+    background: var(--ink);
+    color: #F8F5F2;
     padding: 11px 20px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: 600;
     font-size: 14px;
     transition: all 0.2s;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    border: 1px solid var(--accent);
+    border: 1px solid var(--ink);
     cursor: pointer;
-    white-space: nowrap;
   }
-  .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 20px -8px rgba(59,130,246,0.4); }
+  .btn-primary:hover { background: #120F10; transform: translateY(-1px); box-shadow: 0 8px 20px -8px rgba(35,31,32,0.4); }
   
   .btn-ghost {
     background: var(--surface);
     color: var(--ink-soft);
     padding: 10px 16px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: 500;
     font-size: 14px;
     transition: all 0.2s;
@@ -114,7 +112,6 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    white-space: nowrap;
   }
   .btn-ghost:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
   .btn-icon { width: 34px; height: 34px; padding: 0; justify-content: center; }
@@ -124,7 +121,7 @@
     align-items: center;
     gap: 12px;
     padding: 10px 14px;
-    border-radius: 12px;
+    border-radius: 10px;
     color: var(--muted);
     font-size: 14px;
     font-weight: 500;
@@ -133,12 +130,12 @@
     border: 1px solid transparent;
   }
   .nav-item:hover { background: var(--accent-soft); color: var(--ink); }
-  .nav-item.active { background: var(--accent); color: #FFFFFF; }
-  .nav-item.active .nav-count { background: rgba(255,255,255,0.3); color: white; }
+  .nav-item.active { background: var(--ink); color: #F8F5F2; }
+  .nav-item.active .nav-count { background: var(--accent); color: white; }
   .nav-count {
     margin-left: auto;
     background: var(--line);
-    color: var(--ink-soft);
+    color: var(--muted);
     font-size: 11px;
     font-weight: 600;
     padding: 2px 8px;
@@ -158,12 +155,12 @@
     bottom: 24px;
     right: 24px;
     background: var(--ink);
-    color: #FFFFFF;
+    color: #F8F5F2;
     padding: 13px 18px;
     border-radius: 12px;
     font-size: 13px;
     font-weight: 500;
-    box-shadow: 0 20px 40px -10px rgba(51,65,85,0.25);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25);
     transform: translateY(100px);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -174,7 +171,7 @@
     pointer-events: none;
   }
   .toast.show { transform: translateY(0); opacity: 1; }
-  .guest-row:hover { background: #F8FAFC; }
+  .guest-row:hover { background: #FAF5F2; }
   
   @keyframes pulse-soft {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -184,16 +181,16 @@
   
   .logo-mark {
     width: 38px; height: 38px;
-    background: var(--accent);
-    border-radius: 12px;
+    background: var(--ink);
+    border-radius: 11px;
     display: flex; align-items: center; justify-content: center;
-    color: #FFFFFF;
+    color: var(--accent);
     font-family: 'Fraunces', serif; font-weight: 600; font-size: 19px;
     position: relative; flex-shrink: 0;
   }
   .logo-mark::after {
     content: ''; position: absolute; inset: -4px;
-    border: 1px solid var(--accent); border-radius: 15px; opacity: 0.35;
+    border: 1px solid var(--accent); border-radius: 14px; opacity: 0.35;
   }
 
   @media (max-width: 900px) {
@@ -212,7 +209,7 @@
       <div class="flex items-center gap-3 mb-8">
         <div class="logo-mark">🎟️</div>
         <div>
-          <div class="font-display text-lg font-semibold leading-none text-[var(--ink)]">UndanganEvent</div>
+          <div class="font-display text-lg font-semibold leading-none">UndanganEvent</div>
           <div class="text-[11px] text-[var(--muted)] mt-1.5 tracking-wide">ADMIN PANEL</div>
         </div>
       </div>
@@ -239,7 +236,7 @@
       <div class="mt-6 p-4 rounded-xl bg-[var(--accent-soft)] border border-[var(--line)]">
         <div class="flex items-center gap-2 mb-1.5">
           <span class="w-2 h-2 rounded-full bg-[var(--success)] pulse-dot"></span>
-          <span class="text-xs font-semibold text-[var(--ink)]">Tersimpan Otomatis</span>
+          <span class="text-xs font-semibold">Tersimpan Otomatis</span>
         </div>
         <p class="text-[11px] text-[var(--muted)] leading-relaxed">Data tersimpan aman di browser ini.</p>
       </div>
@@ -247,6 +244,7 @@
     
     <!-- MAIN CONTENT -->
     <main class="main-content flex-1 overflow-x-hidden min-w-0">
+      <!-- Topbar -->
       <header class="border-b border-[var(--line)] bg-[var(--surface)]/85 backdrop-blur-md px-6 lg:px-10 py-5 flex items-center justify-between sticky top-0 z-30 gap-4">
         <div class="flex items-center gap-3 min-w-0">
           <button class="mobile-menu-btn hidden w-9 h-9 rounded-lg border border-[var(--line)] items-center justify-center text-[var(--ink)]" onclick="toggleSidebar()">
@@ -254,7 +252,7 @@
           </button>
           <div class="min-w-0">
             <div class="text-xs text-[var(--muted)] mb-1 truncate" id="breadcrumb">Kelola Event / Detail & Ucapan</div>
-            <h1 class="font-display text-xl lg:text-2xl font-semibold truncate text-[var(--ink)]" id="pageTitle">Detail Event & Pesan Undangan</h1>
+            <h1 class="font-display text-xl lg:text-2xl font-semibold truncate" id="pageTitle">Detail Event & Pesan Undangan</h1>
           </div>
         </div>
         <div class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--accent-soft)] border border-[var(--line)]">
@@ -275,11 +273,11 @@
             <div class="space-y-5">
               <div class="card p-7">
                 <div class="flex items-center gap-3 mb-6">
-                  <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent-dark)]">
+                  <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent)]">
                     <i class="fa-solid fa-bullhorn text-sm"></i>
                   </div>
                   <div>
-                    <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Informasi Acara / Event</h2>
+                    <h2 class="font-display text-lg font-semibold leading-tight">Informasi Acara / Event</h2>
                     <p class="text-xs text-[var(--muted)] mt-0.5">Nama acara dan penyelenggara</p>
                   </div>
                 </div>
@@ -296,13 +294,14 @@
                 </div>
               </div>
               
+              <!-- Kalimat Ucapan WA -->
               <div class="card p-7">
                 <div class="flex items-center gap-3 mb-6">
-                  <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent-dark)]">
+                  <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent)]">
                     <i class="fa-regular fa-message text-sm"></i>
                   </div>
                   <div>
-                    <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Pesan Undangan WhatsApp</h2>
+                    <h2 class="font-display text-lg font-semibold leading-tight">Pesan Undangan WhatsApp</h2>
                     <p class="text-xs text-[var(--muted)] mt-0.5">Format kalimat yang dikirimkan saat klik tombol WA</p>
                   </div>
                 </div>
@@ -349,25 +348,25 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
             <div class="grid grid-cols-3 gap-4 mb-6">
               <div class="card p-5">
                 <div class="text-[10px] text-[var(--muted)] uppercase tracking-wider mb-1.5 font-semibold">Total Tamu</div>
-                <div class="font-display text-3xl font-semibold text-[var(--ink)]" id="statTotal">0</div>
+                <div class="font-display text-3xl font-semibold" id="statTotal">0</div>
               </div>
               <div class="card p-5">
                 <div class="text-[10px] text-[var(--muted)] uppercase tracking-wider mb-1.5 font-semibold">Link Personal</div>
-                <div class="font-display text-3xl font-semibold text-[var(--ink)]" id="statLink">0</div>
+                <div class="font-display text-3xl font-semibold" id="statLink">0</div>
               </div>
               <div class="card p-5">
                 <div class="text-[10px] text-[var(--muted)] uppercase tracking-wider mb-1.5 font-semibold">Terkirim</div>
-                <div class="font-display text-3xl font-semibold text-[var(--success-dark)]" id="statSent">0</div>
+                <div class="font-display text-3xl font-semibold" id="statSent">0</div>
               </div>
             </div>
             
             <div class="card p-7 mb-6">
               <div class="flex items-center gap-3 mb-5">
-                <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent-dark)]">
+                <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent)]">
                   <i class="fa-solid fa-user-plus text-sm"></i>
                 </div>
                 <div>
-                  <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Tambah Banyak Tamu</h2>
+                  <h2 class="font-display text-lg font-semibold leading-tight">Tambah Banyak Tamu</h2>
                   <p class="text-xs text-[var(--muted)] mt-0.5">Ketik atau tempel nama tamu di sini (satu nama per baris)</p>
                 </div>
               </div>
@@ -387,14 +386,14 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
             
             <div class="card overflow-hidden">
               <div class="p-6 border-b border-[var(--line)] flex items-center justify-between gap-4 flex-wrap">
-                <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Daftar Tamu Undangan</h2>
+                <h2 class="font-display text-lg font-semibold leading-tight">Daftar Tamu Undangan</h2>
                 <div class="flex gap-2 w-full sm:w-auto">
                   <div class="relative flex-1 sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)] text-xs"></i>
-                    <input type="text" id="searchGuest" class="field-input pl-9" placeholder="Cari nama tamu..." oninput="renderGuests()" />
+                    <input type="text" id="searchGuest" class="field-input pl-9" placeholder="Cari nama tamu..." />
                   </div>
                   <button class="btn-ghost btn-icon" onclick="exportCSV()" title="Export ke CSV">
-                    <i class="fa-solid fa-file-csv text-sm text-[var(--success-dark)]"></i>
+                    <i class="fa-solid fa-file-csv text-sm text-[var(--success)]"></i>
                   </button>
                   <button class="btn-ghost btn-icon" onclick="clearAllGuests()" title="Hapus Semua Tamu">
                     <i class="fa-regular fa-trash-can text-sm text-[var(--danger)]"></i>
@@ -403,14 +402,14 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
               </div>
               
               <div class="overflow-x-auto">
-                <table class="w-full min-w-[640px]">
+                <table class="w-full">
                   <thead>
-                    <tr class="bg-[var(--accent-soft)] text-left">
-                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-12 text-center">#</th>
-                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3">Nama Tamu</th>
-                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-32">Kode Unik</th>
-                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-32">Status WA</th>
-                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-28 text-right">Aksi</th>
+                    <tr class="bg-[#FAF5F2] text-left">
+                      <th class="text-[10px] font-semibold text-[var(--muted)] uppercase px-6 py-3 w-12">#</th>
+                      <th class="text-[10px] font-semibold text-[var(--muted)] uppercase px-6 py-3">Nama Tamu</th>
+                      <th class="text-[10px] font-semibold text-[var(--muted)] uppercase px-6 py-3">Kode Unik</th>
+                      <th class="text-[10px] font-semibold text-[var(--muted)] uppercase px-6 py-3">Status WA</th>
+                      <th class="text-[10px] font-semibold text-[var(--muted)] uppercase px-6 py-3 text-right">Aksi</th>
                     </tr>
                   </thead>
                   <tbody id="guestTableBody"></tbody>
@@ -432,7 +431,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
             </div>
 
             <div class="card p-7 mb-6">
-              <h2 class="font-display text-lg font-semibold leading-tight mb-2 text-[var(--ink)]">Link Utama Undangan</h2>
+              <h2 class="font-display text-lg font-semibold leading-tight mb-2">Link Utama Undangan</h2>
               <div class="flex gap-2 flex-col sm:flex-row">
                 <input type="text" id="mainLink" class="field-input flex-1 font-mono text-sm" readonly />
                 <button class="btn-primary" onclick="copyMainLink()"><i class="fa-regular fa-copy"></i> Salin</button>
@@ -441,7 +440,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
             
             <div class="card p-7">
               <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
-                <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Link Personal per Tamu</h2>
+                <h2 class="font-display text-lg font-semibold leading-tight">Link Personal per Tamu</h2>
                 <button class="btn-ghost" onclick="copyAllLinks()"><i class="fa-regular fa-copy"></i> Salin Semua</button>
               </div>
               <div id="linkList" class="space-y-2.5"></div>
@@ -455,13 +454,12 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
   </div>
   
   <div class="toast" id="toast">
-    <i class="fa-solid fa-check-circle text-[var(--success-dark)]" id="toastIcon"></i>
+    <i class="fa-solid fa-check-circle text-[var(--success)]" id="toastIcon"></i>
     <span id="toastMsg">Berhasil disimpan</span>
   </div>
   
   <script>
-    // Link utama website GitHub
-    const INVITE_URL = "https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/";
+    const INVITE_URL = window.location.origin + window.location.pathname.replace(/admin-[^/]+\.html|admin\.html/, '');
     
     let state = {
       event: { name: '', organizer: '', message: '' },
@@ -484,20 +482,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       tabs.forEach(t => document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab));
       document.querySelector('.sidebar').classList.remove('open');
 
-      const breadcrumb = document.getElementById('breadcrumb');
-      const pageTitle = document.getElementById('pageTitle');
-      
-      if (tab === 'event') {
-        breadcrumb.innerText = 'Kelola Event / Detail & Ucapan';
-        pageTitle.innerText = 'Detail Event & Pesan Undangan';
-      } else if (tab === 'tamu') {
-        breadcrumb.innerText = 'Kelola Event / Daftar Tamu';
-        pageTitle.innerText = 'Kelola Daftar Tamu Undangan';
-      } else if (tab === 'link') {
-        breadcrumb.innerText = 'Kelola Event / Link Undangan';
-        pageTitle.innerText = 'Daftar Link Undangan Personal';
-      }
-
+      // Toggle Reminder di Tab Link
       const reminder = document.getElementById('eventReminder');
       if(tab === 'link') {
         if(!state.event.name) reminder.classList.remove('hidden');
@@ -508,6 +493,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
     document.querySelectorAll('.nav-item[data-tab]').forEach(i => i.addEventListener('click', () => switchTab(i.dataset.tab)));
     function toggleSidebar() { document.querySelector('.sidebar').classList.toggle('open'); }
     
+    // Character Count Listener
     const msgInput = document.getElementById('invitationMessage');
     msgInput.addEventListener('input', () => {
       document.getElementById('charCount').innerText = msgInput.value.length;
@@ -564,6 +550,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       state.guests.forEach((g, i) => {
           const link = `${INVITE_URL}?to=${g.code}`;
           const status = g.sent ? 'Terkirim' : 'Belum';
+          // Escape names with commas
           const safeName = `"${g.name.replace(/"/g, '""')}"`;
           csv += `${i+1},${safeName},${g.code},${link},${status}\n`;
       });
@@ -597,19 +584,13 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       document.getElementById('guestEmpty').style.display = 'none';
       tbody.innerHTML = filtered.map((g, i) => `
         <tr class="guest-row border-t border-[var(--line-soft)] text-sm">
-          <td class="px-6 py-4 text-[var(--muted)] text-center">${i+1}</td>
-          <td class="px-6 py-4 font-medium text-[var(--ink)] break-words min-w-[180px]">${escapeHtml(g.name)}</td>
-          <td class="px-6 py-4"><span class="font-mono text-xs px-2 py-1 bg-[var(--accent-soft)] rounded font-semibold text-[var(--accent-dark)] whitespace-nowrap">${g.code}</span></td>
-          <td class="px-6 py-4">
-            ${g.sent 
-              ? '<span class="text-[var(--success-dark)] font-medium flex items-center gap-1.5"><i class="fa-solid fa-check-circle"></i> Terkirim</span>' 
-              : '<span class="text-[var(--muted)] flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> Belum</span>'}
-          </td>
-          <td class="px-6 py-4">
-            <div class="flex items-center justify-end gap-2">
-              <button class="btn-ghost btn-icon" onclick="shareWhatsApp('${g.id}')" title="Kirim WA"><i class="fa-brands fa-whatsapp text-sm text-[var(--success-dark)]"></i></button>
-              <button class="btn-ghost btn-icon" onclick="deleteGuest('${g.id}')" title="Hapus"><i class="fa-regular fa-trash text-xs text-[var(--danger)]"></i></button>
-            </div>
+          <td class="px-6 py-4 text-[var(--muted)]">${i+1}</td>
+          <td class="px-6 py-4 font-medium">${escapeHtml(g.name)}</td>
+          <td class="px-6 py-4"><span class="font-mono text-xs px-2 py-1 bg-[var(--accent-soft)] rounded font-semibold text-[var(--accent-dark)]">${g.code}</span></td>
+          <td class="px-6 py-4">${g.sent ? '<span class="text-[var(--success)] font-medium">✓ Terkirim</span>' : '<span class="text-[var(--muted)]">Belum</span>'}</td>
+          <td class="px-6 py-4 text-right">
+            <button class="btn-ghost btn-icon" onclick="shareWhatsApp('${g.id}')" title="Kirim WA"><i class="fa-brands fa-whatsapp text-sm text-[var(--success)]"></i></button>
+            <button class="btn-ghost btn-icon" onclick="deleteGuest('${g.id}')" title="Hapus"><i class="fa-regular fa-trash text-xs"></i></button>
           </td>
         </tr>
       `).join('');
@@ -627,12 +608,12 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
         return `
           <div class="p-3 border border-[var(--line)] rounded-xl flex items-center justify-between gap-3 bg-white">
             <div class="min-w-0">
-              <div class="font-medium text-sm truncate text-[var(--ink)]">${escapeHtml(g.name)}</div>
+              <div class="font-medium text-sm truncate">${escapeHtml(g.name)}</div>
               <div class="text-xs text-[var(--muted)] font-mono truncate">${link}</div>
             </div>
-            <div class="flex gap-1 flex-shrink-0">
-              <button class="btn-ghost btn-icon" onclick="copyText('${link}')" title="Salin Link"><i class="fa-regular fa-copy text-xs text-[var(--accent-dark)]"></i></button>
-              <button class="btn-ghost btn-icon" onclick="shareWhatsApp('${g.id}')" title="Kirim WA"><i class="fa-brands fa-whatsapp text-sm text-[var(--success-dark)]"></i></button>
+            <div class="flex gap-1">
+              <button class="btn-ghost btn-icon" onclick="copyText('${link}')" title="Salin Link"><i class="fa-regular fa-copy text-xs"></i></button>
+              <button class="btn-ghost btn-icon" onclick="shareWhatsApp('${g.id}')" title="Kirim WA"><i class="fa-brands fa-whatsapp text-sm text-[var(--success)]"></i></button>
             </div>
           </div>
         `;
@@ -649,12 +630,8 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
                .replace(/\[NAMA_EVENT\]/g, state.event.name || "Event Spesial")
                .replace(/\[LINK_UNDANGAN\]/g, link);
                
-      g.sent = true; 
-      saveState(); 
-      renderGuests(); 
-      renderLinks();
-
-      window.location.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+      g.sent = true; saveState(); renderGuests(); renderLinks();
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
     }
     
     function deleteGuest(id) {
@@ -684,7 +661,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       document.getElementById('toastMsg').textContent = m;
       
       if (type === 'success') {
-        icon.className = 'fa-solid fa-check-circle text-[var(--success-dark)]';
+        icon.className = 'fa-solid fa-check-circle text-[var(--success)]';
       } else if (type === 'exclamation') {
         icon.className = 'fa-solid fa-circle-exclamation text-[var(--danger)]';
       }
@@ -693,7 +670,6 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
-    // Inisialisasi awal
     loadState();
     if(!state.event.name && !state.guests.length) {
       state.event = { name: 'Gathering & Workshop', organizer: 'Panitia Event', message: 'Kepada Yth: [NAMA_TAMU]\n\nDengan hormat, kami mengundang Anda untuk hadir pada acara [NAMA_EVENT].\n\nDetail acara dan tempat lokasi dapat dilihat melalui link berikut:\n[LINK_UNDANGAN]' };
@@ -704,10 +680,9 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
     document.getElementById('eventName').value = state.event.name || '';
     document.getElementById('eventOrganizer').value = state.event.organizer || '';
     document.getElementById('invitationMessage').value = state.event.message || '';
-    document.getElementById('charCount').innerText = (state.event.message || '').length;
-
-    renderGuests();
-    renderLinks();
+    document.getElementById('charCount').innerText = state.event.message ? state.event.message.length : '0';
+    document.getElementById('searchGuest').addEventListener('input', renderGuests);
+    renderGuests(); renderLinks();
   </script>
 </body>
 </html>
