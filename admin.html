@@ -8,8 +8,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Undangan Event Spesial!">
 <meta property="og:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
-<meta property="og:image" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/FunRun.png">
-<meta property="og:image:secure_url" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/FunRun.png">
+<meta property="og:image" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
+<meta property="og:image:secure_url" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Undangan Event Spesial!">
 <meta name="twitter:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
-<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/FunRun.png"">
+<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
 
 <title>UndanganEvent — Admin Panel</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,17 +27,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root {
-    --bg: #F4F8FB;          /* Biru pastel sangat muda */
+    --bg: #F4F8FB;          
     --surface: #FFFFFF;
-    --ink: #334155;         /* Teks utama biru keabu-abuan */
+    --ink: #334155;         
     --ink-soft: #475569;
     --muted: #94A3B8;
-    --line: #E2E8F0;        /* Garis biru-abu muda */
+    --line: #E2E8F0;        
     --line-soft: #F1F5F9;
-    --accent: #60A5FA;      /* Biru pastel utama */
-    --accent-dark: #3B82F6; /* Biru lebih tegas untuk hover/kontras */
-    --accent-soft: #EFF6FF; /* Background biru lembut */
-    --success: #38BDF8;     /* Cyan/Biru langit untuk status sukses */
+    --accent: #60A5FA;      
+    --accent-dark: #3B82F6; 
+    --accent-soft: #EFF6FF; 
+    --success: #38BDF8;     
     --success-dark: #0EA5E9;
     --danger: #F87171;
   }
@@ -224,7 +224,6 @@
             <i class="fa-solid fa-calendar-check w-4 text-center"></i>
             <span>Detail & Ucapan</span>
           </div>
-          <!-- PERBAIKAN TAG <i> SEBELUMNYA -->
           <div class="nav-item" data-tab="tamu">
             <i class="fa-regular fa-address-book w-4 text-center"></i>
             <span>Daftar Tamu</span>
@@ -248,7 +247,6 @@
     
     <!-- MAIN CONTENT -->
     <main class="main-content flex-1 overflow-x-hidden min-w-0">
-      <!-- Topbar -->
       <header class="border-b border-[var(--line)] bg-[var(--surface)]/85 backdrop-blur-md px-6 lg:px-10 py-5 flex items-center justify-between sticky top-0 z-30 gap-4">
         <div class="flex items-center gap-3 min-w-0">
           <button class="mobile-menu-btn hidden w-9 h-9 rounded-lg border border-[var(--line)] items-center justify-center text-[var(--ink)]" onclick="toggleSidebar()">
@@ -387,7 +385,6 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
               </div>
             </div>
             
-            <!-- TABEL TAMU YANG SUDAH DIPERBAIKI DAN DIRAPIKAN -->
             <div class="card overflow-hidden">
               <div class="p-6 border-b border-[var(--line)] flex items-center justify-between gap-4 flex-wrap">
                 <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Daftar Tamu Undangan</h2>
@@ -463,7 +460,8 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
   </div>
   
   <script>
-    const INVITE_URL = window.location.origin + window.location.pathname.replace(/admin-[^/]+\.html|admin\.html/, '');
+    // Link utama website GitHub kamu
+    const INVITE_URL = "https://hamzanifina3-ops.github.io/undangan-ultah_nailong/";
     
     let state = {
       event: { name: '', organizer: '', message: '' },
@@ -486,7 +484,6 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       tabs.forEach(t => document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab));
       document.querySelector('.sidebar').classList.remove('open');
 
-      // Toggle Reminder di Tab Link
       const reminder = document.getElementById('eventReminder');
       if(tab === 'link') {
         if(!state.event.name) reminder.classList.remove('hidden');
@@ -497,7 +494,6 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
     document.querySelectorAll('.nav-item[data-tab]').forEach(i => i.addEventListener('click', () => switchTab(i.dataset.tab)));
     function toggleSidebar() { document.querySelector('.sidebar').classList.toggle('open'); }
     
-    // Character Count Listener
     const msgInput = document.getElementById('invitationMessage');
     msgInput.addEventListener('input', () => {
       document.getElementById('charCount').innerText = msgInput.value.length;
@@ -629,6 +625,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       }).join('');
     }
     
+    // PEMBARUAN PENTING: Pengiriman WA Langsung
     function shareWhatsApp(id) {
       const g = state.guests.find(g => g.id === id);
       if(!g) return;
@@ -639,8 +636,13 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
                .replace(/\[NAMA_EVENT\]/g, state.event.name || "Event Spesial")
                .replace(/\[LINK_UNDANGAN\]/g, link);
                
-      g.sent = true; saveState(); renderGuests(); renderLinks();
-      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+      g.sent = true; 
+      saveState(); 
+      renderGuests(); 
+      renderLinks();
+
+      // Membuka aplikasi WhatsApp langsung tanpa terhalang pop-up blocker HP
+      window.location.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
     }
     
     function deleteGuest(id) {
