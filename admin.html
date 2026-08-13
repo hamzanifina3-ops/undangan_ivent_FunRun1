@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Undangan Event Spesial!">
 <meta name="twitter:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
-<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
+<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/FunRun.png">
 
 <title>UndanganEvent — Admin Panel</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -391,7 +391,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
                 <div class="flex gap-2 w-full sm:w-auto">
                   <div class="relative flex-1 sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)] text-xs"></i>
-                    <input type="text" id="searchGuest" class="field-input pl-9" placeholder="Cari nama tamu..." />
+                    <input type="text" id="searchGuest" class="field-input pl-9" placeholder="Cari nama tamu..." oninput="renderGuests()" />
                   </div>
                   <button class="btn-ghost btn-icon" onclick="exportCSV()" title="Export ke CSV">
                     <i class="fa-solid fa-file-csv text-sm text-[var(--success-dark)]"></i>
@@ -460,7 +460,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
   </div>
   
   <script>
-    // Link utama website GitHub kamu
+    // Link utama website GitHub
     const INVITE_URL = "https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/";
     
     let state = {
@@ -483,6 +483,20 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.tab === tab));
       tabs.forEach(t => document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab));
       document.querySelector('.sidebar').classList.remove('open');
+
+      const breadcrumb = document.getElementById('breadcrumb');
+      const pageTitle = document.getElementById('pageTitle');
+      
+      if (tab === 'event') {
+        breadcrumb.innerText = 'Kelola Event / Detail & Ucapan';
+        pageTitle.innerText = 'Detail Event & Pesan Undangan';
+      } else if (tab === 'tamu') {
+        breadcrumb.innerText = 'Kelola Event / Daftar Tamu';
+        pageTitle.innerText = 'Kelola Daftar Tamu Undangan';
+      } else if (tab === 'link') {
+        breadcrumb.innerText = 'Kelola Event / Link Undangan';
+        pageTitle.innerText = 'Daftar Link Undangan Personal';
+      }
 
       const reminder = document.getElementById('eventReminder');
       if(tab === 'link') {
@@ -625,7 +639,6 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       }).join('');
     }
     
-    // PEMBARUAN PENTING: Pengiriman WA Langsung
     function shareWhatsApp(id) {
       const g = state.guests.find(g => g.id === id);
       if(!g) return;
@@ -641,7 +654,6 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       renderGuests(); 
       renderLinks();
 
-      // Membuka aplikasi WhatsApp langsung tanpa terhalang pop-up blocker HP
       window.location.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
     }
     
@@ -681,6 +693,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
+    // Inisialisasi awal
     loadState();
     if(!state.event.name && !state.guests.length) {
       state.event = { name: 'Gathering & Workshop', organizer: 'Panitia Event', message: 'Kepada Yth: [NAMA_TAMU]\n\nDengan hormat, kami mengundang Anda untuk hadir pada acara [NAMA_EVENT].\n\nDetail acara dan tempat lokasi dapat dilihat melalui link berikut:\n[LINK_UNDANGAN]' };
@@ -691,9 +704,10 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
     document.getElementById('eventName').value = state.event.name || '';
     document.getElementById('eventOrganizer').value = state.event.organizer || '';
     document.getElementById('invitationMessage').value = state.event.message || '';
-    document.getElementById('charCount').innerText = state.event.message ? state.event.message.length : '0';
-    document.getElementById('searchGuest').addEventListener('input', renderGuests);
-    renderGuests(); renderLinks();
+    document.getElementById('charCount').innerText = (state.event.message || '').length;
+
+    renderGuests();
+    renderLinks();
   </script>
 </body>
 </html>
