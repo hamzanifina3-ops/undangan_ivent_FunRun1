@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Fun Run 2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Menggunakan gambar sebagai background utama */
+            background-image: url('https://z-cdn-media.chatglm.cn/files/21263c8a-5038-4781-b975-357334003274.png?auth_key=1886581752-e1d7d9da0a804a58adbf2258a5256df9-0-8f108686b7d14c4bab39ddc3fea9949e');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Gambar diam saat di-scroll */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Halaman Pembuka (Tombol Buka) */
+        .cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://z-cdn-media.chatglm.cn/files/21263c8a-5038-4781-b975-357334003274.png?auth_key=1886581752-e1d7d9da0a804a58adbf2258a5256df9-0-8f108686b7d14c4bab39ddc3fea9949e');
+            background-size: cover;
+            background-position: center;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Menempatkan teks di bawah */
+            align-items: center;
+            text-align: center;
+            transition: all 0.8s ease;
+            padding: 40px 20px;
+        }
+
+        /* Overlay gelap minimalis agar teks di cover tetap bisa dibaca tanpa menutupi gambar */
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Gradient dari transparan di atas ke agak gelap di bawah agar teks terbaca */
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%); 
+            z-index: -1;
+        }
+
+        .cover.hide {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cover h1 {
+            color: #ffffff;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0px 4px 10px rgba(0,0,0,0.8);
+        }
+
+        .cover p {
+            color: #f1f2f6;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+            max-width: 400px;
+            text-shadow: 0px 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .btn-open {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            animation: pulse 1.5s infinite;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Tombol Musik Melayang */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 71, 87, 0.9);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animasi berputar untuk ikon musik saat aktif */
+        .music-btn.playing {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Konten Undangan */
+        .content {
+            opacity: 0;
+            transition: opacity 1s ease;
+            padding: 20px 0;
+        }
+
+        .content.show {
+            opacity: 1;
+        }
+
+        .section {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 25px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #ff4757;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: #7bed9f;
+            margin: 5px auto 0;
+            border-radius: 2px;
+        }
+
+        .section p {
+            color: #2f3542;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        /* Box Tanggal & Waktu */
+        .time-box {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .time-box div {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            background: #f1f2f6;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+
+        .time-box span {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Box Lokasi & Maps */
+        .map-box {
+            margin: 20px 0;
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-map {
+            display: inline-block;
+            background: #1dd1a1;
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* CTA Daftar */
+        .cta-section {
+            background: #ff4757;
+            color: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            margin: 30px auto;
+            max-width: 560px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.3);
+        }
+
+        .btn-daftar {
+            display: inline-block;
+            background: white;
+            color: #ff4757;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Animasi Scroll Down */
+        .scroll-down {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+            color: #fff;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+
+        footer {
+            background: rgba(47, 53, 66, 0.85);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+        <!-- GANTI LINK DI BAWAH INI DENGAN LINK MUSIK ANDA SENDIRI -->
+        <source src="MASUKAN-LINK-MUSIK-KAMU-DISINI.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- Tombol Musik Melayang -->
+    <button id="musicBtn" class="music-btn" onclick="toggleMusic()" style="display: none;">🔇</button>
+
+    <!-- Halaman Cover / Tombol Buka -->
+    <div class="cover" id="cover">
+        <h1>FUN RUN 2024</h1>
+        <p>Halo Pelajar! Siap bakar semangat?<br>Klik tombol di bawah untuk buka undangan!</p>
+        <button class="btn-open" onclick="bukaUndangan()">BUKA UNDANGAN</button>
+    </div>
+
+    <!-- Konten Utama -->
+    <div class="content" id="content">
+        
+        <div class="scroll-down">⬇️</div>
+
+        <!-- Intro / Copywriting -->
+        <div class="section">
+            <h2>⚡ IT'S TIME TO BURN! ⚡</h2>
+            <p>Udah bosan sama rutinitas sekolah yang gitu-gitu aja? Pengen seru-seruan bareng teman tapi tetap sehat? 🤔</p>
+            <p>Gabung yuk di event lari paling HITS tahun ini: <strong>👟 "SCHOOL DASH 2024" 👟</strong></p>
+            <p>Ini bukan lari biasa, ini ajang seru-seruan bareng pelajar dari berbagai sekolah!</p>
+            <p><strong>Apa yang bakal kamu dapetin?</strong><br>
+            🌈 Taburan Color Powder<br>
+            🎧 Live DJ Performance<br>
+            🏆 Hadiah Menarik buat Finisher Tercepat<br>
+            📸 Fotografer handal biar konten IG makin kece!</p>
+        </div>
+
+        <div class="scroll-down">⬇️</div>
+
+        <!-- Tanggal & Waktu -->
+        <div class="section">
+            <h2>Catat Tanggal Mainnya!</h2>
+            <div class="time-box">
+                <div>
+                    <span>📅</span> 
+                    <div>
+                        <strong>Hari/Tanggal:</strong><br>Minggu, 25 Agustus 2024
+                    </div>
+                </div>
+                <div>
+                    <span>⏰</span> 
+                    <div>
+                        <strong>Waktu:</strong><br>06.00 WIB - Selesai
+                    </div>
+                </div>
+                <div>
+                    <span>🎟️</span> 
+                    <div>
+                        <strong>HTM:</strong><br>Cuma Rp 50.000 (Dapat Jersey + Medali)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-down">⬇️</div>
+
+        <!-- Lokasi & Maps -->
+        <div class="section">
+            <h2>Lokasi Acara</h2>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3361652098457!2d106.82710931476878!3d-6.175392895521979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonas!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+                <p><strong>Start/Finish:</strong><br>Lapangan Sekolah X (Ganti dengan lokasi Anda)</p>
+                <a href="https://maps.google.com/?q=Monas+Jakarta" target="_blank" class="btn-map">📍 Buka di Google Maps</a>
+            </div>
+        </div>
+
+        <!-- CTA Pendaftaran -->
+        <div class="section" style="background: transparent; box-shadow: none;">
+            <div class="cta-section">
+                <h2 style="color: white;">Jangan Sampai Ketinggalan!</h2>
+                <p>Slot TERBATAS! Langsung daftar sekarang dan buktiin kalau sekolah kamu yang paling sporty! 🔥😎</p>
+                <a href="https://forms.google.com" target="_blank" class="btn-daftar">👉 DAFTAR SEKARANG</a>
+                <p style="margin-top:15px; font-size:0.9rem;">Info kontak: 0812-3456-7890 (WhatsApp)</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>#SchoolDash2024 #FunRunPelajar #LariKuy<br>Panitia OSIS 2024</p>
+        </footer>
+    </div>
+
+    <script>
+        var bgMusic = document.getElementById('bgMusic');
+        var musicBtn = document.getElementById('musicBtn');
+        var isPlaying = false;
+
+        function bukaUndangan() {
+            // Sembunyikan cover
+            document.getElementById('cover').classList.add('hide');
+            // Tampilkan konten
+            setTimeout(() => {
+                document.getElementById('content').classList.add('show');
+                window.scrollTo(0, 0);
+            }, 300);
+
+            // Putar musik saat undangan dibuka
+            playMusic();
+        }
+
+        function playMusic() {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicBtn.style.display = "flex"; // Tampilkan tombol
+                musicBtn.innerHTML = "🔊";
+                musicBtn.classList.add('playing'); // Tambah animasi putar
+            }).catch(err => {
+                console.log("Aut Musik diblokir browser: ", err);
+                // Jika diblokir, tampilkan tombol tapi dalam kondisi muted
+                musicBtn.style.display = "flex";
+                musicBtn.innerHTML = "🔇";
+            });
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.innerHTML = "🔇";
+                musicBtn.classList.remove('playing');
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                musicBtn.innerHTML = "🔊";
+                musicBtn.classList.add('playing');
+                isPlaying = true;
+            }
+        }
+    </script>
+</body>
+</html>

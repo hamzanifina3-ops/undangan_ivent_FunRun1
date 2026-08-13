@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph Meta Tags untuk WhatsApp Preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Undangan Event Spesial!">
+<meta property="og:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
+<meta property="og:image" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
+<meta property="og:image:secure_url" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Undangan Event Spesial!">
+<meta name="twitter:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
+<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan-ultah_nailong/foto1.jpg">
+
+<title>UndanganEvent — Admin Panel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #F4F8FB;          /* Biru pastel sangat muda */
+    --surface: #FFFFFF;
+    --ink: #334155;         /* Teks utama biru keabu-abuan */
+    --ink-soft: #475569;
+    --muted: #94A3B8;
+    --line: #E2E8F0;        /* Garis biru-abu muda */
+    --line-soft: #F1F5F9;
+    --accent: #60A5FA;      /* Biru pastel utama */
+    --accent-dark: #3B82F6; /* Biru lebih tegas untuk hover/kontras */
+    --accent-soft: #EFF6FF; /* Background biru lembut */
+    --success: #38BDF8;     /* Cyan/Biru langit untuk status sukses */
+    --success-dark: #0EA5E9;
+    --danger: #F87171;
+  }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(96,165,250,0.12) 0%, transparent 35%),
+      radial-gradient(circle at 100% 100%, rgba(56,189,248,0.10) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+  .font-display { font-family: 'Fraunces', Georgia, serif; }
+  
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
+  
+  .tab-panel { animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .field-input, .field-textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 14px;
+    transition: all 0.2s;
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .field-textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+  .field-input:focus, .field-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(96,165,250, 0.15);
+    background: #FFFEFB;
+  }
+  .field-input::placeholder, .field-textarea::placeholder { color: #CBD5E1; }
+  
+  .btn-primary {
+    background: var(--accent);
+    color: #FFFFFF;
+    padding: 11px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 8px 20px -8px rgba(59,130,246,0.4); }
+  
+  .btn-ghost {
+    background: var(--surface);
+    color: var(--ink-soft);
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
+    border: 1px solid var(--line);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-ghost:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+  .btn-icon { width: 34px; height: 34px; padding: 0; justify-content: center; }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .nav-item:hover { background: var(--accent-soft); color: var(--ink); }
+  .nav-item.active { background: var(--accent); color: #FFFFFF; }
+  .nav-item.active .nav-count { background: rgba(255,255,255,0.3); color: white; }
+  .nav-count {
+    margin-left: auto;
+    background: var(--line);
+    color: var(--ink-soft);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 22px;
+    text-align: center;
+  }
+  
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--ink);
+    color: #FFFFFF;
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 20px 40px -10px rgba(51,65,85,0.25);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .guest-row:hover { background: #F8FAFC; }
+  
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+  .pulse-dot { animation: pulse-soft 2s infinite; }
+  
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #FFFFFF;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 19px;
+    position: relative; flex-shrink: 0;
+  }
+  .logo-mark::after {
+    content: ''; position: absolute; inset: -4px;
+    border: 1px solid var(--accent); border-radius: 15px; opacity: 0.35;
+  }
+
+  @media (max-width: 900px) {
+    .sidebar { position: fixed; left: -280px; top: 0; bottom: 0; z-index: 50; transition: left 0.3s; box-shadow: 4px 0 30px rgba(0,0,0,0.1); }
+    .sidebar.open { left: 0; }
+    .mobile-menu-btn { display: flex !important; }
+    .main-content { margin-left: 0 !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="flex min-h-screen">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar w-[260px] border-r border-[var(--line)] bg-[var(--surface)] flex flex-col p-5 sticky top-0 h-screen flex-shrink-0">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="logo-mark">🎟️</div>
+        <div>
+          <div class="font-display text-lg font-semibold leading-none text-[var(--ink)]">UndanganEvent</div>
+          <div class="text-[11px] text-[var(--muted)] mt-1.5 tracking-wide">ADMIN PANEL</div>
+        </div>
+      </div>
+      
+      <nav class="flex-1">
+        <div class="text-[10px] uppercase tracking-wider text-[var(--muted)] font-semibold px-3 mb-2">Kelola Event</div>
+        <div class="space-y-1">
+          <div class="nav-item active" data-tab="event">
+            <i class="fa-solid fa-calendar-check w-4 text-center"></i>
+            <span>Detail & Ucapan</span>
+          </div>
+          <!-- PERBAIKAN TAG <i> SEBELUMNYA -->
+          <div class="nav-item" data-tab="tamu">
+            <i class="fa-regular fa-address-book w-4 text-center"></i>
+            <span>Daftar Tamu</span>
+            <span class="nav-count" id="navGuestCount">0</span>
+          </div>
+          <div class="nav-item" data-tab="link">
+            <i class="fa-regular fa-share-from-square w-4 text-center"></i>
+            <span>Link Undangan</span>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="mt-6 p-4 rounded-xl bg-[var(--accent-soft)] border border-[var(--line)]">
+        <div class="flex items-center gap-2 mb-1.5">
+          <span class="w-2 h-2 rounded-full bg-[var(--success)] pulse-dot"></span>
+          <span class="text-xs font-semibold text-[var(--ink)]">Tersimpan Otomatis</span>
+        </div>
+        <p class="text-[11px] text-[var(--muted)] leading-relaxed">Data tersimpan aman di browser ini.</p>
+      </div>
+    </aside>
+    
+    <!-- MAIN CONTENT -->
+    <main class="main-content flex-1 overflow-x-hidden min-w-0">
+      <!-- Topbar -->
+      <header class="border-b border-[var(--line)] bg-[var(--surface)]/85 backdrop-blur-md px-6 lg:px-10 py-5 flex items-center justify-between sticky top-0 z-30 gap-4">
+        <div class="flex items-center gap-3 min-w-0">
+          <button class="mobile-menu-btn hidden w-9 h-9 rounded-lg border border-[var(--line)] items-center justify-center text-[var(--ink)]" onclick="toggleSidebar()">
+            <i class="fa-solid fa-bars text-sm"></i>
+          </button>
+          <div class="min-w-0">
+            <div class="text-xs text-[var(--muted)] mb-1 truncate" id="breadcrumb">Kelola Event / Detail & Ucapan</div>
+            <h1 class="font-display text-xl lg:text-2xl font-semibold truncate text-[var(--ink)]" id="pageTitle">Detail Event & Pesan Undangan</h1>
+          </div>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--accent-soft)] border border-[var(--line)]">
+          <span class="w-2 h-2 rounded-full bg-[var(--success)] pulse-dot"></span>
+          <span class="text-xs font-medium text-[var(--ink-soft)]">Auto-save aktif</span>
+        </div>
+      </header>
+      
+      <div class="p-6 lg:p-10">
+        <div class="max-w-4xl">
+          
+          <!-- TAB 1: EVENT -->
+          <section class="tab-panel" id="tab-event">
+            <div class="mb-7">
+              <p class="text-[var(--muted)] text-sm leading-relaxed max-w-2xl">Atur informasi event/acara kamu dan kalimat ucapan yang akan dikirimkan ke para tamu via WhatsApp.</p>
+            </div>
+            
+            <div class="space-y-5">
+              <div class="card p-7">
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent-dark)]">
+                    <i class="fa-solid fa-bullhorn text-sm"></i>
+                  </div>
+                  <div>
+                    <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Informasi Acara / Event</h2>
+                    <p class="text-xs text-[var(--muted)] mt-0.5">Nama acara dan penyelenggara</p>
+                  </div>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider mb-2 block">Nama Event / Acara</label>
+                    <input type="text" id="eventName" class="field-input" placeholder="Gala Dinner & Meetup" />
+                  </div>
+                  <div>
+                    <label class="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider mb-2 block">Penyelenggara / Panitia</label>
+                    <input type="text" id="eventOrganizer" class="field-input" placeholder="Panitia Komunitas" />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card p-7">
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent-dark)]">
+                    <i class="fa-regular fa-message text-sm"></i>
+                  </div>
+                  <div>
+                    <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Pesan Undangan WhatsApp</h2>
+                    <p class="text-xs text-[var(--muted)] mt-0.5">Format kalimat yang dikirimkan saat klik tombol WA</p>
+                  </div>
+                </div>
+                
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider">Isi Teks Undangan</label>
+                    <span class="text-xs text-[var(--muted)]"><span id="charCount">0</span> / 800</span>
+                  </div>
+                  <textarea id="invitationMessage" rows="9" class="field-textarea" maxlength="800" placeholder="Kepada Yth: [NAMA_TAMU]
+
+Dengan hormat, kami mengundang Anda untuk hadir pada acara [NAMA_EVENT].
+
+Detail acara, jadwal, dan lokasi dapat dilihat melalui link di bawah ini:
+[LINK_UNDANGAN]
+
+Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></textarea>
+                  <p class="text-xs text-[var(--muted)] mt-2 flex items-start gap-1.5">
+                    <i class="fa-regular fa-lightbulb mt-0.5"></i>
+                    <span>Gunakan tag <strong>[NAMA_TAMU]</strong>, <strong>[NAMA_EVENT]</strong>, dan <strong>[LINK_UNDANGAN]</strong> agar otomatis terganti secara personal.</span>
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex justify-end gap-3 pt-2">
+                <button class="btn-ghost" onclick="resetForm()">
+                  <i class="fa-regular fa-rotate-left"></i>
+                  <span>Reset Form</span>
+                </button>
+                <button class="btn-primary" onclick="saveEventData()">
+                  <i class="fa-regular fa-check"></i>
+                  <span>Simpan Perubahan</span>
+                </button>
+              </div>
+            </div>
+          </section>
+          
+          <!-- TAB 2: TAMU -->
+          <section class="tab-panel hidden" id="tab-tamu">
+            <div class="mb-7">
+              <p class="text-[var(--muted)] text-sm leading-relaxed max-w-2xl">Tambahkan nama-nama tamu yang diundang. Setiap tamu akan dibuatkan link personal unik secara otomatis.</p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="card p-5">
+                <div class="text-[10px] text-[var(--muted)] uppercase tracking-wider mb-1.5 font-semibold">Total Tamu</div>
+                <div class="font-display text-3xl font-semibold text-[var(--ink)]" id="statTotal">0</div>
+              </div>
+              <div class="card p-5">
+                <div class="text-[10px] text-[var(--muted)] uppercase tracking-wider mb-1.5 font-semibold">Link Personal</div>
+                <div class="font-display text-3xl font-semibold text-[var(--ink)]" id="statLink">0</div>
+              </div>
+              <div class="card p-5">
+                <div class="text-[10px] text-[var(--muted)] uppercase tracking-wider mb-1.5 font-semibold">Terkirim</div>
+                <div class="font-display text-3xl font-semibold text-[var(--success-dark)]" id="statSent">0</div>
+              </div>
+            </div>
+            
+            <div class="card p-7 mb-6">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-9 h-9 rounded-lg bg-[var(--accent-soft)] flex items-center justify-center text-[var(--accent-dark)]">
+                  <i class="fa-solid fa-user-plus text-sm"></i>
+                </div>
+                <div>
+                  <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Tambah Banyak Tamu</h2>
+                  <p class="text-xs text-[var(--muted)] mt-0.5">Ketik atau tempel nama tamu di sini (satu nama per baris)</p>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                <textarea id="bulkGuestInput" rows="5" class="field-textarea" placeholder="Masukkan satu nama per baris, contoh:&#10;Bapak Ahmad Sanusi&#10;Ibu Kartika Pertiwi&#10;Tim Manajemen PT Sukses"></textarea>
+              </div>
+              
+              <div class="flex justify-end gap-3">
+                <button class="btn-ghost" onclick="document.getElementById('bulkGuestInput').value=''">Bersihkan</button>
+                <button class="btn-primary" onclick="addBulkGuests()">
+                  <i class="fa-regular fa-plus"></i>
+                  <span>Tambahkan Tamu</span>
+                </button>
+              </div>
+            </div>
+            
+            <!-- TABEL TAMU YANG SUDAH DIPERBAIKI DAN DIRAPIKAN -->
+            <div class="card overflow-hidden">
+              <div class="p-6 border-b border-[var(--line)] flex items-center justify-between gap-4 flex-wrap">
+                <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Daftar Tamu Undangan</h2>
+                <div class="flex gap-2 w-full sm:w-auto">
+                  <div class="relative flex-1 sm:w-72">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)] text-xs"></i>
+                    <input type="text" id="searchGuest" class="field-input pl-9" placeholder="Cari nama tamu..." />
+                  </div>
+                  <button class="btn-ghost btn-icon" onclick="exportCSV()" title="Export ke CSV">
+                    <i class="fa-solid fa-file-csv text-sm text-[var(--success-dark)]"></i>
+                  </button>
+                  <button class="btn-ghost btn-icon" onclick="clearAllGuests()" title="Hapus Semua Tamu">
+                    <i class="fa-regular fa-trash-can text-sm text-[var(--danger)]"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="overflow-x-auto">
+                <table class="w-full min-w-[640px]">
+                  <thead>
+                    <tr class="bg-[var(--accent-soft)] text-left">
+                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-12 text-center">#</th>
+                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3">Nama Tamu</th>
+                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-32">Kode Unik</th>
+                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-32">Status WA</th>
+                      <th class="text-[10px] font-semibold text-[var(--ink-soft)] uppercase px-6 py-3 w-28 text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="guestTableBody"></tbody>
+                </table>
+                <div id="guestEmpty" class="py-12 text-center text-sm text-[var(--muted)]">Belum ada tamu ditambahkan.</div>
+              </div>
+            </div>
+          </section>
+          
+          <!-- TAB 3: LINK -->
+          <section class="tab-panel hidden" id="tab-link">
+            <div class="mb-7">
+              <p class="text-[var(--muted)] text-sm leading-relaxed max-w-2xl">Bagikan link ke para tamu. Tombol WhatsApp akan langsung menyertakan ucapan dan thumbnail foto1.jpg kamu secara otomatis.</p>
+            </div>
+            
+            <div id="eventReminder" class="hidden mb-6 p-4 rounded-xl bg-[#FFF3F3] border border-[var(--danger)] text-[var(--danger)] text-sm flex items-center gap-2">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span>Harap isi Nama Event di tab "Detail & Ucapan" agar pesan WhatsApp terkirim dengan benar.</span>
+            </div>
+
+            <div class="card p-7 mb-6">
+              <h2 class="font-display text-lg font-semibold leading-tight mb-2 text-[var(--ink)]">Link Utama Undangan</h2>
+              <div class="flex gap-2 flex-col sm:flex-row">
+                <input type="text" id="mainLink" class="field-input flex-1 font-mono text-sm" readonly />
+                <button class="btn-primary" onclick="copyMainLink()"><i class="fa-regular fa-copy"></i> Salin</button>
+              </div>
+            </div>
+            
+            <div class="card p-7">
+              <div class="flex items-center justify-between mb-5 flex-wrap gap-3">
+                <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Link Personal per Tamu</h2>
+                <button class="btn-ghost" onclick="copyAllLinks()"><i class="fa-regular fa-copy"></i> Salin Semua</button>
+              </div>
+              <div id="linkList" class="space-y-2.5"></div>
+              <div id="linkEmpty" class="py-12 text-center text-sm text-[var(--muted)]">Belum ada daftar tamu.</div>
+            </div>
+          </section>
+          
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-check-circle text-[var(--success-dark)]" id="toastIcon"></i>
+    <span id="toastMsg">Berhasil disimpan</span>
+  </div>
+  
+  <script>
+    const INVITE_URL = window.location.origin + window.location.pathname.replace(/admin-[^/]+\.html|admin\.html/, '');
+    
+    let state = {
+      event: { name: '', organizer: '', message: '' },
+      guests: []
+    };
+    
+    function loadState() {
+      const saved = localStorage.getItem('undanganEventState');
+      if (saved) {
+        try { state = JSON.parse(saved); } catch(e){}
+      }
+    }
+    function saveState() {
+      localStorage.setItem('undanganEventState', JSON.stringify(state));
+    }
+    
+    const tabs = ['event', 'tamu', 'link'];
+    function switchTab(tab) {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.tab === tab));
+      tabs.forEach(t => document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab));
+      document.querySelector('.sidebar').classList.remove('open');
+
+      // Toggle Reminder di Tab Link
+      const reminder = document.getElementById('eventReminder');
+      if(tab === 'link') {
+        if(!state.event.name) reminder.classList.remove('hidden');
+        else reminder.classList.add('hidden');
+      }
+    }
+    
+    document.querySelectorAll('.nav-item[data-tab]').forEach(i => i.addEventListener('click', () => switchTab(i.dataset.tab)));
+    function toggleSidebar() { document.querySelector('.sidebar').classList.toggle('open'); }
+    
+    // Character Count Listener
+    const msgInput = document.getElementById('invitationMessage');
+    msgInput.addEventListener('input', () => {
+      document.getElementById('charCount').innerText = msgInput.value.length;
+    });
+    
+    function saveEventData() {
+      state.event.name = document.getElementById('eventName').value.trim();
+      state.event.organizer = document.getElementById('eventOrganizer').value.trim();
+      state.event.message = document.getElementById('invitationMessage').value.trim();
+      saveState();
+      showToast('Data event tersimpan!');
+    }
+
+    function resetForm() {
+      document.getElementById('eventName').value = '';
+      document.getElementById('eventOrganizer').value = '';
+      document.getElementById('invitationMessage').value = '';
+      document.getElementById('charCount').innerText = '0';
+      showToast('Form dibersihkan', 'exclamation');
+    }
+    
+    function generateCode() {
+      return Math.random().toString(36).substring(2, 8).toUpperCase();
+    }
+    
+    function addBulkGuests() {
+      const text = document.getElementById('bulkGuestInput').value;
+      const names = text.split('\n').map(n => n.trim()).filter(Boolean);
+      if(!names.length) return showToast('Isi minimal satu nama', 'exclamation');
+      
+      names.forEach(name => {
+        state.guests.push({
+          id: 'g_' + Date.now() + '_' + Math.random().toString(36).substr(2,4),
+          name: name, code: generateCode(), sent: false
+        });
+      });
+      document.getElementById('bulkGuestInput').value = '';
+      saveState(); renderGuests(); renderLinks();
+      showToast(names.length + ' tamu berhasil ditambahkan');
+    }
+    
+    function clearAllGuests() {
+      if(!state.guests.length) return showToast('Daftar tamu sudah kosong', 'exclamation');
+      if(confirm('Hapus semua daftar tamu? Tindakan ini tidak bisa dibatalkan.')) {
+        state.guests = [];
+        saveState(); renderGuests(); renderLinks();
+        showToast('Semua tamu telah dihapus');
+      }
+    }
+
+    function exportCSV() {
+      if(!state.guests.length) return showToast('Tidak ada data untuk diekspor', 'exclamation');
+      let csv = "No,Nama,Kode Unik,Link,Status Terkirim\n";
+      state.guests.forEach((g, i) => {
+          const link = `${INVITE_URL}?to=${g.code}`;
+          const status = g.sent ? 'Terkirim' : 'Belum';
+          const safeName = `"${g.name.replace(/"/g, '""')}"`;
+          csv += `${i+1},${safeName},${g.code},${link},${status}\n`;
+      });
+      
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", "Daftar_Tamu_Undangan.csv");
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('File CSV berhasil diunduh!');
+    }
+    
+    function renderGuests() {
+      const tbody = document.getElementById('guestTableBody');
+      const search = document.getElementById('searchGuest').value.toLowerCase();
+      const filtered = state.guests.filter(g => g.name.toLowerCase().includes(search));
+      
+      document.getElementById('navGuestCount').textContent = state.guests.length;
+      document.getElementById('statTotal').textContent = state.guests.length;
+      document.getElementById('statLink').textContent = state.guests.length;
+      document.getElementById('statSent').textContent = state.guests.filter(g => g.sent).length;
+      
+      if(!filtered.length) {
+        tbody.innerHTML = ''; document.getElementById('guestEmpty').style.display = 'block';
+        return;
+      }
+      document.getElementById('guestEmpty').style.display = 'none';
+      tbody.innerHTML = filtered.map((g, i) => `
+        <tr class="guest-row border-t border-[var(--line-soft)] text-sm">
+          <td class="px-6 py-4 text-[var(--muted)] text-center">${i+1}</td>
+          <td class="px-6 py-4 font-medium text-[var(--ink)] break-words min-w-[180px]">${escapeHtml(g.name)}</td>
+          <td class="px-6 py-4"><span class="font-mono text-xs px-2 py-1 bg-[var(--accent-soft)] rounded font-semibold text-[var(--accent-dark)] whitespace-nowrap">${g.code}</span></td>
+          <td class="px-6 py-4">
+            ${g.sent 
+              ? '<span class="text-[var(--success-dark)] font-medium flex items-center gap-1.5"><i class="fa-solid fa-check-circle"></i> Terkirim</span>' 
+              : '<span class="text-[var(--muted)] flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> Belum</span>'}
+          </td>
+          <td class="px-6 py-4">
+            <div class="flex items-center justify-end gap-2">
+              <button class="btn-ghost btn-icon" onclick="shareWhatsApp('${g.id}')" title="Kirim WA"><i class="fa-brands fa-whatsapp text-sm text-[var(--success-dark)]"></i></button>
+              <button class="btn-ghost btn-icon" onclick="deleteGuest('${g.id}')" title="Hapus"><i class="fa-regular fa-trash text-xs text-[var(--danger)]"></i></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+    
+    function renderLinks() {
+      const list = document.getElementById('linkList');
+      document.getElementById('mainLink').value = INVITE_URL;
+      if(!state.guests.length) {
+        list.innerHTML = ''; document.getElementById('linkEmpty').style.display = 'block'; return;
+      }
+      document.getElementById('linkEmpty').style.display = 'none';
+      list.innerHTML = state.guests.map(g => {
+        const link = `${INVITE_URL}?to=${g.code}`;
+        return `
+          <div class="p-3 border border-[var(--line)] rounded-xl flex items-center justify-between gap-3 bg-white">
+            <div class="min-w-0">
+              <div class="font-medium text-sm truncate text-[var(--ink)]">${escapeHtml(g.name)}</div>
+              <div class="text-xs text-[var(--muted)] font-mono truncate">${link}</div>
+            </div>
+            <div class="flex gap-1 flex-shrink-0">
+              <button class="btn-ghost btn-icon" onclick="copyText('${link}')" title="Salin Link"><i class="fa-regular fa-copy text-xs text-[var(--accent-dark)]"></i></button>
+              <button class="btn-ghost btn-icon" onclick="shareWhatsApp('${g.id}')" title="Kirim WA"><i class="fa-brands fa-whatsapp text-sm text-[var(--success-dark)]"></i></button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    function shareWhatsApp(id) {
+      const g = state.guests.find(g => g.id === id);
+      if(!g) return;
+      const link = `${INVITE_URL}?to=${g.code}`;
+      let msg = state.event.message || "Kepada Yth: [NAMA_TAMU]\n\nDengan hormat, kami mengundang Anda untuk hadir pada acara [NAMA_EVENT].\n\nDetail acara dapat dilihat melalui link berikut:\n[LINK_UNDANGAN]";
+      
+      msg = msg.replace(/\[NAMA_TAMU\]/g, g.name)
+               .replace(/\[NAMA_EVENT\]/g, state.event.name || "Event Spesial")
+               .replace(/\[LINK_UNDANGAN\]/g, link);
+               
+      g.sent = true; saveState(); renderGuests(); renderLinks();
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+    
+    function deleteGuest(id) {
+      state.guests = state.guests.filter(g => g.id !== id);
+      saveState(); renderGuests(); renderLinks();
+      showToast('Tamu dihapus');
+    }
+    
+    function copyText(txt) {
+      navigator.clipboard.writeText(txt).then(() => {
+        showToast('Link tersalin!');
+      }).catch(() => {
+        showToast('Gagal menyalin link', 'exclamation');
+      });
+    }
+    function copyMainLink() { copyText(INVITE_URL); }
+    function copyAllLinks() {
+      if(!state.guests.length) return showToast('Belum ada tamu', 'exclamation');
+      const all = state.guests.map(g => `${g.name}: ${INVITE_URL}?to=${g.code}`).join('\n');
+      copyText(all);
+    }
+    
+    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    function showToast(m, type = 'success') {
+      const t = document.getElementById('toast');
+      const icon = document.getElementById('toastIcon');
+      document.getElementById('toastMsg').textContent = m;
+      
+      if (type === 'success') {
+        icon.className = 'fa-solid fa-check-circle text-[var(--success-dark)]';
+      } else if (type === 'exclamation') {
+        icon.className = 'fa-solid fa-circle-exclamation text-[var(--danger)]';
+      }
+      
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    loadState();
+    if(!state.event.name && !state.guests.length) {
+      state.event = { name: 'Gathering & Workshop', organizer: 'Panitia Event', message: 'Kepada Yth: [NAMA_TAMU]\n\nDengan hormat, kami mengundang Anda untuk hadir pada acara [NAMA_EVENT].\n\nDetail acara dan tempat lokasi dapat dilihat melalui link berikut:\n[LINK_UNDANGAN]' };
+      state.guests = [{ id: 'g1', name: 'Bapak Ahmad Sanusi', code: 'EV98XP', sent: false }];
+      saveState();
+    }
+    
+    document.getElementById('eventName').value = state.event.name || '';
+    document.getElementById('eventOrganizer').value = state.event.organizer || '';
+    document.getElementById('invitationMessage').value = state.event.message || '';
+    document.getElementById('charCount').innerText = state.event.message ? state.event.message.length : '0';
+    document.getElementById('searchGuest').addEventListener('input', renderGuests);
+    renderGuests(); renderLinks();
+  </script>
+</body>
+</html>
